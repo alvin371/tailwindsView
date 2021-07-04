@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="public/css/tailwind.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+    <title>Tri Andhika Projects</title>
+</head>
+
+<body>
+
+    <nav class="flex items-center justify-between px-auto bg-green-700">
+        <div class="mx-20 items-center justify-between py-4">
+            <a class="ml-2 px-10 text-white font-semibold" href="">Beranda</a>
+            <a class="ml-2 px-10 text-white font-semibold" href="">Pilih Tanaman</a>
+            <a class="ml-2 px-10 text-white font-semibold" href="">Alat Berkebun</a>
+            <a class="ml-2 px-10 text-white font-semibold" href="">Koleksi Saya</a>
+            <a class="ml-2 px-10 text-white font-semibold" href="">Progress saya</a>
+            <a class="ml-2 px-10 text-white font-semibold" href="Login"></a>
+            <input type="search" class="bg-gray-200 w-60 ml-5 py-1 rounded">
+            <img src="profile.png" class="rounded-full w-4/6" alt="">
+        </div>
+    </nav>
+    <div class="swiper-container">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide text-center">
+                <img src="img/carousel-img.png" alt="">
+            </div>
+            <div class="swiper-slide text-center">Slide 2</div>
+            <div class="swiper-slide text-center">Slide 3</div>
+            ...
+        </div>
+    </div>
+    <section class="mt-10 mx-80">
+        <div class="w-5/6 p-2 shadow-lg bg-green-200 rounded">
+            <div class="flex">
+                <h1 class="my-2 float-left flow-root">Halo User!</h1>
+            </div>
+            <div class="flex">
+                <h2 class="text-gray-400 flow-root">
+                    Belajar membuat website dan aplikasi. Bingung mulai dari mana? Tenang, mari bergabung bersama 100
+                    ribu+ teman lainnya. Mau bekerja sebagai programmer atau membuat karya, kamu juga bisa!
+                </h2>
+            </div>
+            <div class="flex ">
+                <button class="bg-green-700 mx-auto rounded p-2 text-white">Lihat Semua Progress</button>
+            </div>
+        </div>
+    </section>
+    <section class="mt-10 mx-80">
+        <h1 class="text-center text-4xl text-green-700 font-extrabold">
+            Telusuri Tanaman Terlaris per Kategori
+        </h1>
+    </section>
+    <section class="mt-10 ">
+        <div class="flex">
+            <h1 class="text center mx-auto font-bold">
+                Tanaman Hias Outdoor
+            </h1>
+        </div>
+        <div class="spesial-slider mySwiper">
+            <div class="swiper-wrapper">
+                <div class="coverflow">
+                    <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+                </div>
+                <div class="coverflow">
+                    <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+                </div>
+                <div class="coverflow">
+                    <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+                </div>
+                <div class="coverflow">
+                    <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+                </div>
+                <div class="coverflow">
+                    <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
+                </div>
+                <div class="coverflow">
+                    <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
+                </div>
+                <div class="coverflow">
+                    <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
+                </div>
+                <div class="coverflow">
+                    <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
+                </div>
+                <div class="coverflow">
+                    <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+    <section class="mt-10">
+        <div class="shadow-lg mx-auto bg-green-300 w-1/2 rounded">
+            <h1 class="text-xl text-white text-center font-bold">
+                Telusuri Semua Kategori Tanaman
+            </h1>
+        </div>
+    </section>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="public/script/script.js"></script>
+
+</body>
+
+</html>

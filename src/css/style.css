@@ -1,0 +1,298 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.active-tab {
+    @apply border-green-500 text-green-500 tracking-wider rounded-t;
+
+}
+
+body {
+    overflow-x: hidden;
+}
+
+
+.hover-tab:hover {
+    @apply bg-gray-300 text-green-700 border-green-700 tracking-wider;
+}
+
+.tab-header {
+    @apply flex mx-auto flex-wrap mb-20;
+}
+
+
+.tab-body {
+    position: relative;
+    height: calc(100% - 60px);
+    padding: 10px 5px;
+}
+
+.tab-content {
+    position: absolute;
+    top: -200%;
+    @apply text-center w-full;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 500ms ease-in-out 0ms,
+        transform 500ms ease-in-out 0ms;
+}
+
+.tab-content-active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.head-popover {
+    @apply p-4;
+}
+
+.popover {
+    @apply mb-5 w-full h-full cursor-pointer;
+    position: relative;
+}
+
+.button-popover {
+    @apply font-medium rounded-sm text-lg px-2 py-3 flex text-gray-800 flex-row-reverse mt-2 cursor-pointer text-black bg-white;
+}
+
+.button-popover:hover {
+    @apply bg-white;
+}
+
+.text-popover {
+    @apply flex-auto;
+}
+
+.arrow-popover {
+    @apply px-2 mt-1;
+}
+
+.popover-content {
+    @apply p-2 text-justify text-center text-gray-800 mb-5 bg-white;
+    display: none;
+
+}
+
+.popover-content p {
+    transition: all 200ms linear;
+    -webkit-animation: scale-up-top 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    animation: scale-up-top 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+.active {
+    @apply p-2 text-justify text-center text-gray-800 mb-5 bg-white;
+    display: block;
+
+}
+
+.bibit {
+    display: none;
+}
+
+.kontenAktive {
+    display: block;
+}
+
+.waktu {
+    @apply w-full py-20;
+    display: none;
+}
+
+.waktu-active {
+    display: block;
+}
+
+.div-kegiatan {
+    @apply pt-10 mx-auto w-full items-center;
+}
+
+.kegiatan {
+    @apply mx-auto max-w-6xl w-full;
+    display: none;
+}
+
+.kegiatan-active {
+    display: block
+}
+
+.tingkatan {
+    display: none;
+}
+
+.tingkatan-active {
+    display: block;
+}
+
+.masalah {
+    display: none;
+}
+
+.masalah-active {
+    display: block;
+}
+
+.pertanyaan {
+    display: none;
+}
+
+.pertanyaan-active {
+    display: block;
+}
+
+.judul {
+    @apply flex justify-center font-bold text-2xl;
+}
+
+.alat {
+    display: none;
+}
+
+.alat-active {
+    display: block;
+}
+
+.div-masalah {
+    @apply container py-16 flex justify-center w-full;
+}
+
+.div-pertanyaan {
+    @apply container pb-16 flex justify-center w-full;
+}
+
+.borderFade {
+    padding-bottom: 1px;
+    color: hsl(0, 0%, 90%);
+    position: relative;
+}
+
+.borderFade::after {
+    content: '';
+    position: absolute;
+    height: 4px;
+    width: 100%;
+    left: 0;
+    bottom: -10px;
+    opacity: 0;
+    transform: translateY(3px);
+    background: hsl(0, 0%, 100%);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.borderFade:hover::after {
+    color: hsl(0, 0%, 100%);
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.radiusPulse {
+    padding: 15px;
+    position: relative;
+}
+
+.radiusPulse::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    bottom: -1px;
+    right: -1px;
+    left: -1px;
+    background-color: rgb(16, 185, 129);
+    border-radius: 50%;
+    transform: scale(0);
+    transition: transform .3s cubic-bezier(.215, .61, .355, 1);
+}
+
+.radiusPulse::after {
+    content: "";
+    position: absolute;
+    top: -1px;
+    bottom: -1px;
+    right: -1px;
+    left: -1px;
+    border: 2px solid rgb(16, 185, 129);
+    border-radius: 50%;
+    transform: scale(1);
+    opacity: 1;
+    transition: opacity .3s cubic-bezier(.215, .61, .355, 1), transform .3s cubic-bezier(.215, .61, .355, 1);
+}
+
+.radiusPulse:hover::before {
+    transform: scale(1);
+}
+
+.radiusPulse:hover::after {
+    transform: scale(1.2);
+    opacity: 0;
+}
+
+.slideUpBtn {
+    padding: 12px 24px;
+    background-color: transparent;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(1, .15, .34, .92)
+}
+
+.slideUpBtn span {
+    display: inline-block;
+    transition: inherit;
+    color: rgb(16, 185, 129);
+}
+
+.slideUpBtn:hover span {
+    opacity: 0;
+    transform: translateY(-100%)
+}
+
+.slideUpBtn::before {
+    content: "";
+    background-color: rgb(16, 185, 129);
+    ;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: translateY(100%);
+    transition: inherit;
+    width: 100%;
+    transition: transform 0.5s cubic-bezier(1, .15, .34, .92)
+}
+
+.slideUpBtn::after {
+    content: 'Tingkatan';
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition: inherit;
+    transform: translateY(100%);
+    width: 100%;
+
+}
+
+.slideUpBtn:hover::before {
+    transform: translateY(0) scale(3);
+    transition-delay: .025s;
+}
+
+.slideUpBtn:hover::after {
+    opacity: 1;
+    color: hsl(0, 0%, 100%);
+    transform: translateY(0);
+}
+
+/* gfont */
+/* image card */
+.img-card {
+    width: 150px;
+    height: 180px;
+}
+
+/* end of image card */
+
+.navbar {
+    @apply mt-2 text-2xl leading-8 font-extrabold tracking-tight text-gray-900;
+}

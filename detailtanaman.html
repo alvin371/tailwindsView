@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="stylesheet" href="public/css/tailwind.css">
+  <title>Detail Tanaman</title>
+  <style>
+    /*each image is referenced twice in the HTML, but each image only needs to be updated in the CSS*/
+    .image1 {
+      content: url("https://i.ibb.co/F8yz4KN/IMG20210306130226.jpg")
+    }
+
+    .image2 {
+      content: url("https://i.ibb.co/vxpSj0j/IMG20210306130233.jpg")
+    }
+
+    .image3 {
+      content: url("https://i.ibb.co/Q81tNbF/IMG20210306130245.jpg")
+    }
+
+    .image4 {
+      content: url("https://randomwordgenerator.com/img/picture-generator/55e0d44b4b56a414f1dc8460962e33791c3ad6e04e5074417c2d78d2954bcd_640.jpg")
+    }
+
+    .image5 {
+      content: url("https://randomwordgenerator.com/img/picture-generator/5ee3dc414954b10ff3d8992cc12c30771037dbf85254794e732f7ad7934e_640.jpg")
+    }
+
+    .image6 {
+      content: url("https://randomwordgenerator.com/img/picture-generator/52e4d7434f51a914f1dc8460962e33791c3ad6e04e5074417d2c7ed09f4acc_640.jpg")
+    }
+
+    .image7 {
+      content: url("https://randomwordgenerator.com/img/picture-generator/55e8d146425bb10ff3d8992cc12c30771037dbf852547848702a7fd19545_640.jpg")
+    }
+
+    .image8 {
+      content: url("https://randomwordgenerator.com/img/picture-generator/55e8d24b4257ac14f1dc8460962e33791c3ad6e04e507440752972d3924cc6_640.jpg")
+    }
+
+    /* Navigation links */
+    .navbar {
+      overflow: hidden;
+      background-color: #064e3b;
+    }
+
+    /* Navigation links */
+    .navbar a {
+      float: left;
+      font-size: 16px;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      margin-top: 10px;
+      margin-bottom: 0px;
+    }
+
+    /* The subnavigation menu */
+    .subnav {
+      float: left;
+      overflow: hidden;
+    }
+
+    /* Subnav button */
+    .subnav .subnavbtn {
+      font-size: 16px;
+      border: none;
+      outline: none;
+      color: white;
+      padding: 14px 16px;
+      background-color: inherit;
+      font-family: inherit;
+      margin: 0;
+      margin-top: 10px;
+      margin-bottom: 0px;
+    }
+
+    /* Add a red background color to navigation links on hover */
+    .navbar a:hover,
+    .subnav:hover .subnavbtn {
+      background-color: #1e40af;
+    }
+
+    /* Style the subnav content - positioned absolute */
+    .subnav-content {
+      display: none;
+      position: absolute;
+      left: 0;
+      background-color: #064e3b;
+      width: 100%;
+      z-index: 1;
+    }
+
+    /* Style the subnav links */
+    .subnav-content a {
+      float: left;
+      color: white;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+    }
+
+    /* Add a grey background color on hover */
+    .subnav-content a:hover {
+      background-color: #eee;
+      color: black;
+    }
+
+    /* When you move the mouse over the subnav container, open the subnav content */
+    .subnav:hover .subnav-content {
+      display: block;
+      background-color: #1e40af;
+    }
+
+    /* Style the search box inside the navigation bar */
+    .navbar .search-container {
+      float: right;
+    }
+
+    .navbar input[type=text] {
+      padding: 6px 10px;
+      margin-top: 15px;
+      margin-bottom: 0px;
+      margin-right: 30px;
+      font-size: 17px;
+      border: none;
+      border-radius: 10px;
+    }
+
+    /* style carousel 2 */
+    .carousel-open:checked+.carousel-item {
+      position: static;
+      opacity: 100;
+    }
+
+    .carousel-item {
+      -webkit-transition: opacity 0.6s ease-out;
+      transition: opacity 0.6s ease-out;
+    }
+
+    #carousel-1:checked~.control-1,
+    #carousel-2:checked~.control-2,
+    #carousel-3:checked~.control-3 {
+      display: block;
+    }
+
+    .carousel-indicators {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      bottom: 2%;
+      left: 0;
+      right: 0;
+      text-align: center;
+      z-index: 10;
+    }
+
+    #carousel-1:checked~.control-1~.carousel-indicators li:nth-child(1) .carousel-bullet,
+    #carousel-2:checked~.control-2~.carousel-indicators li:nth-child(2) .carousel-bullet,
+    #carousel-3:checked~.control-3~.carousel-indicators li:nth-child(3) .carousel-bullet {
+      color: #2b6cb0;
+      /*Set to match the Tailwind colour you want the active one to be */
+    }
+
+    .content {
+      display: none;
+    }
+
+    .content-active {
+      display: block;
+    }
+  </style>
+  <script src="https://kit.fontawesome.com/64de849d60.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Inter:400,500,600,700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+  <link href="./assets/css/filterlist.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>-->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+  <!-- The navigation menu -->
+
+  <div class="navbar">
+    <a href="home.html">Beranda</a>
+    <div class="subnav">
+      <button class="subnavbtn">Tanaman <i class="fa fa-caret-down"></i></button>
+      <div class="subnav-content">
+        <a href="caritanaman.html">Tanaman Hias</a>
+        <a href="tanamanbuah.html">Tanaman Buah</a>
+        <a href="tanamansayur.html">Tanaman Sayur</a>
+        <a href="toga.html">TOGA</a>
+      </div>
+    </div>
+    <div class="subnav">
+      <button class="subnavbtn">Alat Berkebun <i class="fa fa-caret-down"></i></button>
+      <div class="subnav-content">
+        <a href="pupuk.html">Pupuk</a>
+        <a href="pot.html">Pot</a>
+        <a href="mediatanam.html">Media Tanam</a>
+        <a href="alatalat.html">Alat-alat</a>
+      </div>
+    </div>
+    <a href="listmitra.html">Mitra</a>
+    <!--Search bar-->
+    <div class="search-container">
+      <form action="/action_page.php">
+        <input type="text" placeholder="Cari" name="search">
+      </form>
+    </div>
+  </div>
+  <div class="container text-center justify-items-center mx-auto">
+    <div class="grid grid-cols-12 gap-2">
+      <div class="col-start-2 col-end-3 md:flex justify-center py-16">
+        <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-white text-black">
+          <a href="https://www.twitter.com">
+            <em class="fas fa-share-alt sm:text-2xl">&nbsp;</em>
+          </a>
+        </div>
+      </div>
+
+      <!-- PUNYA TITAN -->
+      <div class="col-start-3 col-end-5 md:flex justify-center py-16">
+        <div class="grid grid-rows-1">
+          <div
+            class="row-start-1 row-end-2 object-cover h-40 w-full image1 lg:rounded-lg border-solid border-4 border-gray-500">
+          </div>
+          <div class="row-start-2 row-end-3 bg-gradient-to-tl to-blue-500 text-white font-semibold flex flex-col">
+            <div class="flex flex-row-reverse flex-wrap m-auto">
+              <button
+                class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-green-600 border-green-900 text-white">
+                Lihat Gambar Lainnya
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-start-6 col-end-10 md:flex">
+        <header>
+          <div class="md:flex justify-center py-16 ">
+            <div class="p-8  my-auto ">
+              <h1 class="text-black-100 text-2xl text-center font-bold"> Philodendron Lynette Philo Linet </h1>
+              <p class=" text-gray-600 text-2xl text-center"> Rp. 100.000,00 - RP. 150.000,00 </p>
+              <div class='px-5 py-3'>
+                <h3 class="font-bold text-xs text-center">FUNGSI TANAMAN</h3>
+                <!-- This is the tags container -->
+                <div class='my-3 flex flex-wrap -m-1 justify-center'>
+                  <span
+                    class="m-1 bg-green-400 hover:bg-gray-300 rounded-full px-2 font-bold text-sm text-center leading-loose cursor-pointer">Hadiah</span>
+                  <span
+                    class="m-1 bg-green-400 hover:bg-gray-300 rounded-full px-2 font-bold text-sm leading-loose cursor-pointer">Pengisi
+                    Ruang Sempit</span>
+
+
+                </div>
+              </div>
+            </div>
+        </header>
+      </div>
+    </div>
+
+    <div class="text-center mb-5">
+      <p class="mt-2 text-2xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-2xl">
+        Gambar Penempatan Tanaman di Berbagai Tempat
+      </p>
+    </div>
+
+    <div class="grid grid-cols-12 gap-2 ml-16">
+      <div class="col-start-1 col-end-4 md:flex content-center py-16">
+        <div class="object-cover h- w-full image1 lg:rounded-lg border-solid border-4 border-gray-500"></div>
+      </div>
+      <div class="col-start-5 col-end-8 md:flex content-center py-16">
+        <div class="object-cover h- w-full image2 lg:rounded-lg border-solid border-4 border-gray-500"></div>
+      </div>
+      <div class="col-start-9 col-end-12 md:flex content-center py-16">
+        <div class="object-cover h- w-full image3 lg:rounded-lg border-solid border-4 border-gray-500"></div>
+      </div>
+    </div>
+
+    <div class="bg-gradient-to-tl to-blue-500 text-white font-semibold flex flex-col">
+      <div class="flex flex-row-reverse flex-wrap m-auto">
+        <button class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-green-600 border-green-900 text-white">
+          Lihat Gambar Lainnya
+        </button>
+      </div>
+    </div>
+
+    <!-- PUNYA TITAN -->
+
+    <!-- PUNYA GIBE -->
+    <!-- NavTab -->
+    <div class="tab-header my-20 mx-auto flex text-center justify-center">
+      <a
+        class="sm:px-6 py-3 w-1/2 sm:w-auto justify-center sm:justify-start border-b-2 title-font font-medium inline-flex items-center leading-none border-gray-200 cursor-pointer hover-tab active-tab ">
+        Perawatan </a>
+      <a
+        class="sm:px-6 py-3 w-1/2 sm:w-auto justify-center sm:justify-start border-b-2 title-font font-medium inline-flex items-center leading-none border-gray-200 cursor-pointer hover-tab ">
+        Penanaman </a>
+      <a
+        class="sm:px-6 py-3 w-1/2 sm:w-auto justify-center sm:justify-start border-b-2 title-font font-medium inline-flex items-center leading-none border-gray-200 cursor-pointer hover-tab ">
+        Pertumbuhan </a>
+    </div>
+    <!-- End Navtab -->
+    <!-- content Start -->
+    <div class="konten">
+      <div class="perawatan content content-active">
+        <div class="py-12 bg-white">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+              <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">Perawatan</p>
+            </div>
+            <div class="mt-10">
+              <dl class="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 ">
+                <div class="relative">
+                  <dt>
+                    <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-white text-black">
+                      <i class="fas fa-tree sm:text-4xl "></i>
+                    </div>
+                    <p
+                      class="ml-16 text-lg items-center justify-center leading-6 font-extrabold text-gray-900 sm:text-2xl">
+                      Pemupukan</p>
+                  </dt>
+                  <dd class="mt-2 ml-16 text-base font-extrabold text-blue-500">
+                    <br>
+                    <i class="far fa-sun text-white sm:text-3xl"></i>&nbsp &nbsp Pupuk Daun : 1 kali/Minggu<br>
+                    <br>
+                    <i class="fas fa-cloud text-white sm:text-2xl"></i>&nbsp &nbsp Pupuk Akar : 1 Kali/3 Bulan<br>
+                    <br>
+                    <i class="fas fa-cloud-rain text-white sm:text-3xl"></i>
+                    <!-- <br>
+              Pupuk Daun : 1 kali/Minggu<br>
+              <br>
+              Pupuk Akar : 1 Kali/3 Bulan<br>
+              <br>
+              <i class="fas fa-cloud-rain text-black sm:text-3xl"></i>&nbsp &nbsp 2 Kali/Minggu -->
+                  </dd>
+                  <dt>
+
+                    <div class="bg-green-100 col-start-6 col-end-10 p-4 rounded-xl my-4 mr-auto shadow-md ">
+                      <h4 class="font-semibold text-lg mb-1">Kesimpulan</h4>
+                      <p class="leading-tight text-justify">
+                        Selain penyiraman tanaman dengan air, tanaman juga perlu diberi pupuk secara rutin untuk dapat
+                        meningkatkan kualitas pertumbuhannya.
+                      </p>
+                    </div>
+                    </dd>
+                </div>
+
+                <div class="relative">
+                  <dt>
+                    <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-white text-black">
+                      <i class="fas fa-tint sm:text-4xl"></i>
+                    </div>
+                    <p
+                      class="ml-16 text-lg items-center justify-center leading-6 font-extrabold text-gray-900 sm:text-2xl">
+                      Penyiraman</p>
+                  </dt>
+                  <dd class="mt-2 ml-16 text-base font-extrabold text-blue-500">
+                    <br>
+                    <i class="far fa-sun text-black sm:text-3xl"></i>&nbsp &nbsp 4 kali/Minggu<br>
+                    <br>
+                    <i class="fas fa-cloud text-black sm:text-2xl"></i>&nbsp &nbsp 3 kali/Minggu<br>
+                    <br>
+                    <i class="fas fa-cloud-rain text-black sm:text-3xl"></i>&nbsp &nbsp 2 Kali/Minggu
+                  </dd>
+                  <dt>
+                    <div class="bg-green-100 col-start-6 col-end-10 p-4 rounded-xl my-4 mr-auto shadow-md">
+                      <h3 class="font-semibold text-lg mb-1">Kesimpulan</h3>
+                      <p class="leading-tight text-justify">
+                        Tanaman perlu mendapatkan air yang cukup.. Penyiraman dilakukan seperlunya sesuai dengan kondisi
+                        cuaca
+                        dan curah hujan.
+                      </p>
+                    </div>
+                    </dd>
+                  </dt>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- EndPerawatan -->
+      <!--Frekuensi Penanaman End-->
+      <div class="penanaman content">
+        <div class="py-12 bg-white">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+              <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                Penanaman
+              </p>
+            </div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="mt-10">
+                <dl class="md:grid md:grid-cols-2 md:gap-x-8">
+
+                  <div class="relative">
+                    <dt>
+                      <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-white text-black">
+                        <!-- Heroicon name: outline/globe-alt -->
+                        <i class="fas fa-thermometer-three-quarters sm:text-4xl"></i>
+                      </div>
+                      <p class="ml-16 text-lg leading-6 font-extrabold text-gray-900 sm:text-2xl">Penempatan Tanaman</p>
+                    </dt>
+                    <dd class="mt-2 ml-16 text-base font-extrabold text-blue-500">
+                      <i class="far fa-sun text-white sm:text-2xl"></i>&nbsp &nbsp Menghadap Matahari<br>
+                      <!-- <br>
+                      Menghadap Matahari -->
+                    </dd>
+                    <dt>
+                      <div class="bg-green-100 col-start-6 col-end-10 p-4 rounded-xl my-4 mr-auto shadow-md">
+                        <h3 class="font-semibold text-lg mb-1">Kesimpulan</h3>
+                        <p class="leading-tight text-justify">
+                          Tanaman memerlukan intensitas matahari
+                          yang tinggi. Letakkan tanaman di luar rumah
+                          untuk mendapatkan sinar matahari yang cukup
+                        </p>
+                      </div>
+                      </dd>
+                  </div>
+
+                  <!-- Tambah daerah ideal -->
+                  <div class="relative">
+                    <dt>
+                      <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-white text-black">
+                        <i class="fas fa-mountain sm:text-4xl "></i>
+                      </div>
+                      <p
+                        class="ml-16 text-lg items-center justify-center leading-6 font-extrabold text-gray-900 sm:text-2xl">
+                        Daerah Penanaman</p>
+                    </dt>
+                    <dd class="mt-2 ml-16 text-base font-extrabold text-blue-500">
+                      <i class="far fa-sun text-white sm:text-2xl"></i>&nbsp &nbsp Dataran Tinggi<br>
+                      <!-- <br>
+                  Dataran Tinggi
+                  <br> -->
+                    </dd>
+                    <dt>
+                      <div class="bg-green-100 col-start-6 col-end-10 p-4 rounded-xl my-4 mr-auto shadow-md">
+                        <h3 class="font-semibold text-lg mb-1">Kesimpulan</h3>
+                        <p class="leading-tight text-justify">
+                          Tanaman ini idealnya ditanam pada daerah dataran tinggi dengan kisaran ketinggian 600 meter
+                          diatas
+                          permukaan laut.
+                        </p>
+                      </div>
+                      </dd>
+                  </div>
+                </dl>
+              </div>
+              <div class="flex justify-center mx-auto mt-20 mb-10">
+                <div class="relative">
+                  <div class="flex mx-auto justify-center">
+                    <div class="mr-10">
+                      <img src="src/img/tinggiTanaman.png" alt="" class="h-auto">
+                    </div>
+                    <div class="text-center items-stretch self-center justify-center">
+                      <p class="text-lg items-center justify-center font-extrabold text-gray-900 sm:text-2xl">
+                        Tinggi Tanaman</p>
+                      <p class="text-white font-extrabold text-blue-500">30-40 cm</p>
+                    </div>
+                  </div>
+                  </dd>
+                  <dt>
+                    <div class="bg-green-100 col-start-6 col-end-10 p-4 rounded-xl my-4 mr-auto shadow-md">
+                      <h3 class="font-semibold text-lg mb-1">Kesimpulan</h3>
+                      <p class="leading-tight text-justify">
+                        Tanaman ini memiliki tinggi tidak lebih dari lutut orang dewasa
+                      </p>
+                    </div>
+                    </dd>
+                  </dt>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- PUNYA GIBE -->
+      <!-- Pertumbuhan Tanaman -->
+      <div class="pertumbuhan content">
+        <div class="shadow-lg pb-5 px-5 rounded-lg">
+          <div class="mx-auto text-center">
+            <div class="text-center mb-10">
+              <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">Pertumubuhan
+                Tanaman</p>
+            </div>
+          </div>
+          <div class="mx-auto flex justify-between">
+            <div class="card w-4/5 mr-2">
+              <img src="src/img/img1.png" class="" alt="">
+              <div class="caption">
+                <h1 class="text-xl font-bold">Bibit Tanaman</h1>
+                <h5 class="font-medium text-blue-700">(hari/bulan)</h5>
+              </div>
+            </div>
+            <div class="card w-4/5 mr-2">
+              <img src="src/img/img2.png" class="" alt="">
+              <div class="caption">
+                <h1 class="text-xl font-bold">Bibit Tanaman</h1>
+                <h5 class="font-medium text-blue-700">(hari/bulan)</h5>
+              </div>
+            </div>
+            <div class="card w-4/5 mr-2">
+              <img src="src/img/img3.png" class="" alt="">
+              <div class="caption">
+                <h1 class="text-xl font-bold">Bibit Tanaman</h1>
+                <h5 class="font-medium text-blue-700">(hari/bulan)</h5>
+              </div>
+            </div>
+            <div class="card w-4/5 mr-2">
+              <img src="src/img/img4.png" class="" alt="">
+              <div class="caption">
+                <h1 class="text-xl font-bold">Bibit Tanaman</h1>
+                <h5 class="font-medium text-blue-700">(hari/bulan)</h5>
+              </div>
+            </div>
+            <div class="card w-4/5 mr-2">
+              <img src="src/img/img5.png" class="" alt="">
+              <div class="caption">
+                <h1 class="text-xl font-bold">Bibit Tanaman</h1>
+                <h5 class="font-medium text-blue-700">(hari/bulan)</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-center text-center w-3/6 mt-5 rounded-lg p-5 mx-auto bg-green-100 shadow-lg">
+          <div class="text-left p-4">
+            <p class="text-xl font-semibold">Kesimpulan</p>
+          </div>
+          <div class="text-left pl-2 font-normal">
+            Kita dapat mengetahui pertumbuhan tanaman berdasarkan usia dan tinggi tanaman, sehingga kita dapat
+            mengetahui
+            dan memindahkan ke media tanam yang sesuai untuk bertumbuh
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end content -->
+
+    <!-- End Pertumbuhan Tanaman -->
+    <!-- PUNYA RENDRA -->
+    <div class="lg:p-80 lg:pt-20 lg:pb-10 p-10 bg-gray-50 mt-4">
+      <div class="text-center mb-10">
+        <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900">
+          Waktu Ideal Untuk Menanam
+        </p>
+      </div>
+      <div class="grid md:grid-cols-4 sm:grid-cols-3 lg:grid-cols-6 m-5 mb-10">
+        <div class="bg-pink-200 overflow-hidden m-1 p-3 rounded">
+          <div class="m-2 text-justify text-sm">
+            <h2 class="font-bold text-center text-lg h-2 mb-8">JAN </h2>
+          </div>
+        </div>
+        <div class="bg-pink-200 overflow-hidden m-1 p-3 rounded">
+          <div class="m-2 text-justify text-sm">
+            <h2 class="font-bold text-center text-lg h-2 mb-8">FEB</h2>
+          </div>
+        </div>
+        <div class="bg-pink-200 overflow-hidden m-1 p-3 rounded">
+          <div class="m-2 text-justify text-sm">
+            <h2 class="font-bold text-center text-lg h-2 mb-8">MAR</h2>
+          </div>
+        </div>
+        <div class="bg-green-400 overflow-hidden m-1 p-3 rounded">
+          <div class="m-2 text-justify text-sm">
+            <h2 class="font-bold text-center text-lg h-2 mb-8">APR</h2>
+          </div>
+        </div>
+        <div class="bg-green-400 overflow-hidden m-1 p-3 rounded">
+          <div class="m-2 text-justify text-sm">
+            <h2 class="font-bold text-center text-lg h-2 mb-8">MEI</h2>
+          </div>
+        </div>
+        <div class="bg-green-400 overflow-hidden m-1 p-3 rounded">
+          <div class="m-2 text-justify text-sm">
+            <h2 class="font-bold text-center text-lg h-2 mb-8">JUN</h2>
+          </div>
+        </div>
+        <div class="bg-green-400 overflow-hidden m-1 p-3 rounded">
+          <div class="m-2 text-justify text-sm">
+            <h2 class="font-bold text-center text-lg h-2 mb-8">JUL</h2>
+          </div>
+        </div>
+        <div class="bg-green-400 overflow-hidden m-1 p-3 rounded">
+          <div class="m-2 text-justify text-sm">
+            <h2 class="font-bold text-center text-lg h-2 mb-8">AGU</h2>
+          </div>
+        </div>
+        <div class="bg-pink-200 overflow-hidden m-1 p-3 rounded">
+          <div class="m-2 text-justify text-sm">
+            <h2 class="font-bold text-center text-lg h-2 mb-8">SEP</h2>
+          </div>
+        </div>
+        <div class="bg-pink-200 overflow-hidden m-1 p-3 rounded">
+          <div class="m-2 text-justify text-sm">
+            <h2 class="font-bold text-center text-lg h-2 mb-8">OKT</h2>
+          </div>
+        </div>
+        <div class="bg-pink-200 overflow-hidden m-1 p-3 rounded">
+          <div class="m-2 text-justify text-sm">
+            <h2 class="font-bold text-center text-lg h-2 mb-8">NOV</h2>
+          </div>
+        </div>
+        <div class="bg-pink-200 overflow-hidden m-1 p-3 rounded">
+          <div class="m-2 text-justify text-sm">
+            <h2 class="font-bold text-center text-lg h-2 mb-8">DES</h2>
+          </div>
+        </div>
+      </div>
+      <div class="w-5 h-5 rounded bg-green-400 ml-10 inline-block"></div>
+      <span class="ml-3">Waktu Ideal</span>
+    </div>
+
+    <!-- Kelebihan Kekurangan -->
+    <div class="lg:p-80 lg:pb-10 lg:pt-10 pb-10 pt-10">
+      <div class="grid md:grid-cols-2 m-5 mb-5">
+        <div class="bg-green-200 overflow-hidden m-5 p-5 rounded shadow-md">
+          <div class="m-2 text-justify text-sm">
+            <h2 class="font-bold text-xl h-2 mb-8 text">Kelebihan</h2><br>
+            <div class="mb-3">
+              <div class="pb-6 md:pb-0 flex flex-col">
+                <div><label
+                    class="bg-white input-field inline-flex items-baseline border-none shadow-md bg-white p-4 rounded"><span
+                      class="flex-none text-dusty-blue-darker select-none leading-none">Warna tanaman
+                      indah</span></label>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="pb-6 md:pb-0 flex flex-col">
+                <div><label
+                    class="bg-white input-field inline-flex items-baseline border-none shadow-md bg-white p-4 rounded"><span
+                      class="flex-none text-dusty-blue-darker select-none leading-none">Tanaman cepat
+                      tumbuh</span></label></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-pink-200 overflow-hidden m-5 p-5 rounded shadow-md">
+          <div class="m-2 text-justify text-sm">
+            <h2 class="font-bold text-xl h-2 mb-8">Kekurangan</h2><br>
+            <div class="mb-3">
+              <div class="pb-6 md:pb-0 flex flex-col">
+                <div><label
+                    class="bg-white input-field inline-flex items-baseline border-none shadow-md bg-white p-4 rounded"><span
+                      class="flex-none text-dusty-blue-darker select-none leading-none">Mengundang banyak
+                      serangga</span></label></div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="pb-6 md:pb-0 flex flex-col">
+                <div><label
+                    class="bg-white input-field inline-flex items-baseline border-none shadow-md bg-white p-4 rounded"><span
+                      class="flex-none text-dusty-blue-darker select-none leading-none">Mudah terkena
+                      penyakit</span></label></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-10 bg-gradient-to-tl to-blue-500 text-white font-semibold flex flex-col">
+      <div class="flex flex-row-reverse flex-wrap m-auto">
+        <button class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-green-600 border-green-900 text-white"
+          onclick="document.location='growthprogressPembibitan.html'">
+          Progress Pertumbuhan Tanaman
+        </button>
+      </div>
+    </div>
+
+    <h1 class="mt-2 text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900">Alat Berkebun Yang
+      Dibutuhkan</h1>
+    <div class="flex items-center justify-center">
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4">
+        <!-- 1 card -->
+        <div class="relative bg-white py-6 px-6 rounded-3xl w-64 my-4 shadow-xl">
+          <div class="mt-8">
+            <div class="flex space-x-2">
+              <img src="https://dummyimage.com/720x600" class="w-auto" style="border-radius: 5%" />
+            </div>
+            <p class="text-xl font-semibold my-2">Alat Kebun 1</p>
+            <div class="flex space-x-2 text-black-400 text-sm">
+              <!-- svg -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash"
+                viewBox="0 0 16 16">
+                <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                <path
+                  d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2H3z" />
+              </svg>
+              <p>Rp 99.000 - 109.000</p>
+            </div>
+            <div class="flex space-x-2 text-black-400 text-sm my-3">
+              <!-- svg -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-pin-angle-fill" viewBox="0 0 16 16">
+                <path
+                  d="M9.828.722a.5.5 0 0 1 .354.146l4.95 4.95a.5.5 0 0 1 0 .707c-.48.48-1.072.588-1.503.588-.177 0-.335-.018-.46-.039l-3.134 3.134a5.927 5.927 0 0 1 .16 1.013c.046.702-.032 1.687-.72 2.375a.5.5 0 0 1-.707 0l-2.829-2.828-3.182 3.182c-.195.195-1.219.902-1.414.707-.195-.195.512-1.22.707-1.414l3.182-3.182-2.828-2.829a.5.5 0 0 1 0-.707c.688-.688 1.673-.767 2.375-.72a5.922 5.922 0 0 1 1.013.16l3.134-3.133a2.772 2.772 0 0 1-.04-.461c0-.43.108-1.022.589-1.503a.5.5 0 0 1 .353-.146z" />
+              </svg>
+              <p>Kategori alat</p>
+            </div>
+            <div class="flex space-x-2 text-black-400 text-sm my-3"></div>
+
+            <button
+              class="inline-flex text-white font-semibold bg-green-500 py-1 px-2 focus:outline-none hover:bg-green-600 rounded text-med tex"
+              onclick="document.location='detailalatkebun.html'">Detail</button>
+
+            <div class="border-t-2"></div>
+
+            <div class="flex justify-between">
+              <div class="my-2">
+                <div class="flex space-x-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share"
+                    viewBox="0 0 16 16">
+                    <path
+                      d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" />
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart"
+                    viewBox="0 0 16 16">
+                    <path
+                      d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--card 2-->
+        <div class="relative bg-white py-6 px-6 rounded-3xl w-64 my-4 shadow-xl">
+          <div class="mt-8">
+            <div class="flex space-x-2">
+              <img src="https://dummyimage.com/720x600" class="w-auto" style="border-radius: 5%" />
+            </div>
+            <p class="text-xl font-semibold my-2">Alat kebun 2</p>
+            <div class="flex space-x-2 text-black-400 text-sm">
+              <!-- svg -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash"
+                viewBox="0 0 16 16">
+                <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                <path
+                  d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2H3z" />
+              </svg>
+              <p>Rp.99.000 - Rp.109.000</p>
+            </div>
+            <div class="flex space-x-2 text-black-400 text-sm my-3">
+              <!-- svg -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-pin-angle-fill" viewBox="0 0 16 16">
+                <path
+                  d="M9.828.722a.5.5 0 0 1 .354.146l4.95 4.95a.5.5 0 0 1 0 .707c-.48.48-1.072.588-1.503.588-.177 0-.335-.018-.46-.039l-3.134 3.134a5.927 5.927 0 0 1 .16 1.013c.046.702-.032 1.687-.72 2.375a.5.5 0 0 1-.707 0l-2.829-2.828-3.182 3.182c-.195.195-1.219.902-1.414.707-.195-.195.512-1.22.707-1.414l3.182-3.182-2.828-2.829a.5.5 0 0 1 0-.707c.688-.688 1.673-.767 2.375-.72a5.922 5.922 0 0 1 1.013.16l3.134-3.133a2.772 2.772 0 0 1-.04-.461c0-.43.108-1.022.589-1.503a.5.5 0 0 1 .353-.146z" />
+              </svg>
+              <p>Kategori alat</p>
+            </div>
+            <div class="flex space-x-2 text-black-400 text-sm my-3"></div>
+
+
+            <button
+              class="inline-flex text-white font-semibold bg-green-500 py-1 px-2 focus:outline-none hover:bg-green-600 rounded text-med tex"
+              onclick="document.location='detailalatkebun.html'">Detail</button>
+            <div class="border-t-2"></div>
+
+            <div class="flex justify-between">
+              <div class="my-2">
+                <div class="flex space-x-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share"
+                    viewBox="0 0 16 16">
+                    <path
+                      d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" />
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart"
+                    viewBox="0 0 16 16">
+                    <path
+                      d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--card 3-->
+        <div class="relative bg-white py-6 px-6 rounded-3xl w-64 my-4 shadow-xl">
+          <div class="mt-8">
+            <div class="flex space-x-2">
+              <img src="https://dummyimage.com/720x600" class="w-auto" style="border-radius: 5%" />
+            </div>
+            <p class="text-xl font-semibold my-2">Alat kebun 3</p>
+            <div class="flex space-x-2 text-black-400 text-sm">
+              <!-- svg -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash"
+                viewBox="0 0 16 16">
+                <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                <path
+                  d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2H3z" />
+              </svg>
+              <p>Rp 99.000 - 109.000</p>
+            </div>
+            <div class="flex space-x-2 text-black-400 text-sm my-3">
+              <!-- svg -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-pin-angle-fill" viewBox="0 0 16 16">
+                <path
+                  d="M9.828.722a.5.5 0 0 1 .354.146l4.95 4.95a.5.5 0 0 1 0 .707c-.48.48-1.072.588-1.503.588-.177 0-.335-.018-.46-.039l-3.134 3.134a5.927 5.927 0 0 1 .16 1.013c.046.702-.032 1.687-.72 2.375a.5.5 0 0 1-.707 0l-2.829-2.828-3.182 3.182c-.195.195-1.219.902-1.414.707-.195-.195.512-1.22.707-1.414l3.182-3.182-2.828-2.829a.5.5 0 0 1 0-.707c.688-.688 1.673-.767 2.375-.72a5.922 5.922 0 0 1 1.013.16l3.134-3.133a2.772 2.772 0 0 1-.04-.461c0-.43.108-1.022.589-1.503a.5.5 0 0 1 .353-.146z" />
+              </svg>
+              <p>Kategori alat</p>
+            </div>
+            <div class="flex space-x-2 text-black-400 text-sm my-3"></div>
+
+            <button
+              class="inline-flex text-white font-semibold bg-green-500 py-1 px-2 focus:outline-none hover:bg-green-600 rounded text-med tex">Detail</button>
+            <div class="border-t-2"></div>
+
+            <div class="flex justify-between">
+              <div class="my-2">
+                <div class="flex space-x-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share"
+                    viewBox="0 0 16 16">
+                    <path
+                      d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" />
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart"
+                    viewBox="0 0 16 16">
+                    <path
+                      d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--card 4-->
+        <div class="relative bg-white py-6 px-6 rounded-3xl w-64 my-4 shadow-xl">
+          <div class="mt-8">
+            <div class="flex space-x-2">
+              <img src="https://dummyimage.com/720x600" class="w-auto" style="border-radius: 5%" />
+            </div>
+            <p class="text-xl font-semibold my-2">Alat kebun 4</p>
+            <div class="flex space-x-2 text-black-400 text-sm">
+              <!-- svg -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash"
+                viewBox="0 0 16 16">
+                <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                <path
+                  d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2H3z" />
+              </svg>
+              <p>Rp 99.000 - 109.000</p>
+            </div>
+            <div class="flex space-x-2 text-black-400 text-sm my-3">
+              <!-- svg -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-pin-angle-fill" viewBox="0 0 16 16">
+                <path
+                  d="M9.828.722a.5.5 0 0 1 .354.146l4.95 4.95a.5.5 0 0 1 0 .707c-.48.48-1.072.588-1.503.588-.177 0-.335-.018-.46-.039l-3.134 3.134a5.927 5.927 0 0 1 .16 1.013c.046.702-.032 1.687-.72 2.375a.5.5 0 0 1-.707 0l-2.829-2.828-3.182 3.182c-.195.195-1.219.902-1.414.707-.195-.195.512-1.22.707-1.414l3.182-3.182-2.828-2.829a.5.5 0 0 1 0-.707c.688-.688 1.673-.767 2.375-.72a5.922 5.922 0 0 1 1.013.16l3.134-3.133a2.772 2.772 0 0 1-.04-.461c0-.43.108-1.022.589-1.503a.5.5 0 0 1 .353-.146z" />
+              </svg>
+              <p>Kategori alat</p>
+            </div>
+            <div class="flex space-x-2 text-black-400 text-sm my-3"></div>
+
+            <button
+              class="inline-flex text-white font-semibold bg-green-500 py-1 px-2 focus:outline-none hover:bg-green-600 rounded text-med tex">Detail</button>
+
+            <div class="border-t-2"></div>
+
+            <div class="flex justify-between">
+              <div class="my-2">
+                <div class="flex space-x-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share"
+                    viewBox="0 0 16 16">
+                    <path
+                      d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" />
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart"
+                    viewBox="0 0 16 16">
+                    <path
+                      d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Link ke mitra -->
+    <div class="bg-gray-50 p-5 ">
+      <div class="text-center mb-1">
+        <p class="mt-2 text-xl leading-8 font-extrabold tracking-tight text-gray-900">
+          Anda bisa membeli produk ini di
+        </p>
+      </div>
+      <!-- Profile Card -->
+      <div class="flex justify-center no-wrap md:-mx-2 ">
+        <div class="md:w-3/12 w-3/6 px-6">
+          <div class="bg-white rounded-3xl my-4 shadow-xl ">
+            <div class="image overflow-hidden py-3 px-3">
+              <img class="h-auto w-full mx-auto" src="src/img/sby.png" alt="">
+            </div>
+            <h1 class="text-gray-900 font-bold text-xl text-center leading-8 my-1 "><a href="profilmitra.html">Tamanku
+                Surabaya</a></h1>
+            <p class="text-sm text-gray-500 hover:text-gray-600 leading-6 px-2 py-1">Lorem ipsum dolor sit amet
+              consectetur adipisicing elit.
+              Reprehenderit, eligendi dolorum sequi illum qui unde aspernatur non deserunt</p>
+            <h1 class="text-sm text-gray-500 font-bold px-2 py-1">Contact Us:</h1>
+            <h1 class="text-sm text-gray-500 px-2 py-1">081236677499</h1>
+            <h1 class="text-sm text-gray-500 font-bold px-2 py-1">Alamat</h1>
+            <h1 class="text-sm text-gray-500 px-2 py-1">Jl Situgembolo</h1>
+            <div class="my-4"></div>
+            <a class="text-center block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4"
+              href="profilmitra.html">Cari Info Selengkapnya</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Button -->
+    <div class="flex justify-center mx-auto mt-20 mb-10">
+      <div class="bg-green-400 w-auto shadow-lg rounded h-16 justify-items-center flex hover:bg-green-600">
+        <button class="px-9 text-3xl font-bold  text-white rounded-lg"><a href="">Progress Pertumbuhan
+            Tanaman</a></button>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+
+  <!-- PUNYA RENDRA -->
+  <!--Footer-->
+  <div class="w-full bg-green-900 text-white">
+    <div class="xl:px-40 pb-12 lg:px-20 md:px-10 sm:px-5 px-10">
+      <div class="w-full pt-12 flex flex-col sm:flex-row space-y-2 justify-start">
+        <div class="w-full sm:w-2/5 pr-6 flex flex-col space-y-4">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="160" height="57"
+            viewBox="0 0 160 57">
+            <defs>
+              <pattern id="pattern" preserveAspectRatio="none" width="100%" height="100%" viewBox="0 0 197 70">
+                <image width="197" height="70"
+                  xlink:href="data:image/png;base64,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" />
+              </pattern>
+            </defs>
+            <rect id="ETI-Logo" width="160" height="57" fill="url(#pattern)" />
+          </svg>
+          <p class="opacity-100">Website UMKM Produk Tanaman dan Alat Berkebun di Surabaya.</p>
+        </div>
+        <div class="w-full sm:w-1/5 flex flex-col space-y-4">
+          <a class="opacity-100"><b>Informasi</b></a>
+          <a class="opacity-100">Tentang Kami</a>
+          <a class="opacity-100">Mitra Kami</a>
+          <a class="opacity-100">Privacy Policy</a>
+          <a class="opacity-100">Syarat dan Kebijakan</a>
+        </div>
+        <div class="w-full sm:w-1/5 flex flex-col space-y-4">
+          <a class="opacity-100"><b>Produk dan Layanan</b></a>
+          <a class="opacity-100">Tanaman</a>
+          <a class="opacity-100">Alat Berkebun</a>
+        </div>
+        <div class="w-full sm:w-1/5 pt-6 flex items-end mb-1">
+          <div class="flex flex-row space-x-4">
+            <i class="fab fa-whatsapp"></i>
+            <i class="fab fa-google"></i>
+          </div>
+        </div>
+      </div>
+      <div class="opacity-100 pt-2">
+        <p>© 2021 Tim Gardening Bisnis Digital.</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    //JS to switch slides and replace text in bar//
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      var dots = document.getElementsByClassName("description");
+      var captionText = document.getElementById("caption");
+      if (n > slides.length) {
+        slideIndex = 1
+      }
+      if (n < 1) {
+        slideIndex = slides.length
+      }
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" opacity-100", "");
+      }
+      slides[slideIndex - 1].style.display = "block";
+      dots[slideIndex - 1].className += " opacity-100";
+      captionText.innerHTML = dots[slideIndex - 1].alt;
+    }
+  </script>
+  <script>
+    let tabHeader = document.getElementsByClassName("tab-header")[0];
+
+    let headIsi = document.getElementsByClassName("konten")[0];
+    let konten = headIsi.getElementsByClassName("content");
+
+    let tabsPane = tabHeader.getElementsByTagName("a");
+    for (let i = 0; i < tabsPane.length; i++) {
+      tabsPane[i].addEventListener("click", function () {
+        tabHeader.getElementsByClassName("active-tab")[0].classList.remove("active-tab");
+        tabsPane[i].classList.add("active-tab");
+        headIsi.getElementsByClassName("content-active")[0].classList.remove("content-active");
+        konten[i].classList.add("content-active")
+      });
+
+    }
+  </script>
+</body>
+
+</html>
